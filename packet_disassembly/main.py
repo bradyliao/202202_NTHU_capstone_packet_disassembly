@@ -1,7 +1,7 @@
 import re
 import codecs
-
-
+#test github 20220504
+#test 20220508
 
 def pack_bcd(code):
     return int(code)
@@ -19,7 +19,7 @@ def message_type(code):
         # 每個 Multicast Group
         "3031": "I001", # 01 心跳訊息
         "3032": "I002", # 02 序號重置訊息
-        
+
         # 期貨
         # "3131": "I010", # 11 商品漲跌幅及基本資料訊息
         # "3132": "I030", # 12 商品委託量累計訊息
@@ -76,7 +76,7 @@ def information_time(code):
 # 4 hex digit
 def channel_id(code):
     return pack_bcd(code)
-    
+
 # 10 hex digit
 def channel_seq(code):
     return pack_bcd(code)
@@ -92,13 +92,13 @@ def body_length(code):
 
 def prod_id(code):
     return hex_to_string(code)
-    
+
 def prod_msg_seq(code):
     return pack_bcd(code)
 
 def calculated_flag(code):
     return hex_to_string(code)
-    
+
 # 12 hex digit
 def match_time(code):
     return (pack_bcd(code[0:2]), pack_bcd(code[2:4]), pack_bcd(code[4:6]), pack_bcd(code[6:9]), pack_bcd(code[9:12]))
@@ -117,7 +117,7 @@ def first_match_price(code):
 def first_match_qty(code):
     return pack_bcd(code)
 
-    
+
 #def check_check_sum(content, check_sum):
 
 # I024 process
@@ -142,7 +142,7 @@ def I024(data):
 
 
 def I083(data):
-    
+
 
 
 
@@ -173,21 +173,21 @@ file_write = open("export_py.txt","w")
 
 for id, data in enumerate(extract_result) :
 
-    
+
     file_write.write(str(id) + " " + message_type(data[2:6]) + '\n')
-    
-    
-    
-    
+
+
+
+
     if message_type(data[2:6]) == "x   " :
         print()
         x_count += 1
         continue
-    
+
     if message_type(data[2:6]) == "I024":
         I024(data)
         continue
-    
+
     if message_type(data[2:6]) == "I083":
         I083(data)
         continue
@@ -198,5 +198,3 @@ for id, data in enumerate(extract_result) :
 
 
 file_write.close()
-
-
