@@ -3,6 +3,7 @@ import codecs
 #test github 20220504
 #test 20220508
 # test again
+#test on windows
 
 def pack_bcd(code):
     return int(code)
